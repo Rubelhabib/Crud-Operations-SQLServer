@@ -15,5 +15,6 @@ namespace CrudApp.Models
         [Range(0, int.MaxValue,ErrorMessage = "Stock must be positive")]
 
         public int Stock { get; set; }
+        public bool Active { get; set; }
     }
 }

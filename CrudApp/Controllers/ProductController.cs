@@ -23,7 +23,7 @@ namespace CrudApp.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create([Bind("Name, Price, Description, Stock")] Product model)
+        public IActionResult Create([Bind("Name, Price, Description, Stock, Active")] Product model)
         {
             if (ModelState.IsValid)
             {
@@ -52,12 +52,14 @@ namespace CrudApp.Controllers
 
         [HttpPost]
 
-        public IActionResult Edit([Bind("Id, Name, Price, Description, Stock")] Product produc)
+        public IActionResult Edit([Bind("Id, Name, Price, Description, Stock, Active")] Product produc)
         {
             if (ModelState.IsValid)
             {
                 _context.Products.Update(produc);
                 _context.SaveChanges();
+                TempData["Notification"] = "Product Edit Successfully";
+                TempData["NotificationType"] = "Success";
                 return RedirectToAction("Index");
             }
             return View(produc);
@@ -83,6 +85,8 @@ namespace CrudApp.Controllers
             {
                 _context.Products.Remove(product);
                 _context.SaveChanges();
+                TempData["Notification"] = "Product Delete Successfully";
+                TempData["NotificationType"] = "Success";
             }
             return RedirectToAction("Index");
         }
