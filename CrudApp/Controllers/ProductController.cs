@@ -17,6 +17,7 @@ namespace CrudApp.Controllers
             IEnumerable<Product> products = _context.Products.ToList();
             return View(products);
         }
+
         [HttpGet]
         public IActionResult Create()
         {
