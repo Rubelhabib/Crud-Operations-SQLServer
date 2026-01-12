@@ -1,0 +1,14 @@
+﻿@model Student
+
+<h1>Delete Students</h1>
+
+<h4> Are you sure want delete the student "@Model.Name"</h4>
+
+<form asp-controller="Student" asp-action="DeleteConfirm" method="post">
+    <input asp-for=ID hidden />
+    <button type="submit" class="btn btn-danger"> Student </button>
+</form>
+
+<a asp-action="index" asp-controller="student" class="btn btn-secondary mt-3">Back to List</a>
+
+<!-- <a class="btn btn-secondary mt-3" asp-action="Index" asp-controller="Product">Back to List</a>-->

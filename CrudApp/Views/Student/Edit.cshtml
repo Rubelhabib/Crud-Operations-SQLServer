@@ -1,0 +1,40 @@
+﻿@model Student
+
+<h1>Edit Students</h1>
+
+<form asp-controller="student" asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Roll"></label>
+        <input asp-for="Roll" class="form-control" />
+        <span asp-validation-for="Roll" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Class"></label>
+        <input asp-for="Class" class="form-control" />
+        <span asp-validation-for="Class" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <!--
+    <div class="form-group">
+        <label asp-for="Active"></label>
+        <input asp-for="Active" class="form-control" />
+        <span asp-validation-for="Active" class="text-danger"></span>
+    </div>
+    -->
+    <button type="submit" class="btn btn-primary mt-2">Edit</button>
+
+</form>
+
+<a class="btn btn-secondary mt-3" asp-action="Index" asp-controller="Edit">Back to List</a>

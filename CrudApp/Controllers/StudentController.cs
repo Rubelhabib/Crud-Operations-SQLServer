@@ -17,5 +17,87 @@ namespace CrudApp.Controllers
             IEnumerable<Student> students = _context.Students.ToList();
             return View(students);
         }
+
+        // CREATE
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // CREATE
+        [HttpPost]
+        public IActionResult Create([Bind("Name, Roll, Class, Email")] Student model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Students.Add(model);
+                _context.SaveChanges();
+                TempData["Notification"] = "Product Created Successfully";
+                TempData["NotificationType"] = "Success";
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        // EDIT
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var student = _context.Students.Find(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(student);
+            }
+        }
+
+        // EDIT
+        [HttpPost]
+        public IActionResult Edit([Bind("Id, Name, Roll, Class, Email")] Student studen)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Students.Update(studen);
+                _context.SaveChanges();
+                TempData["Notification"] = "Student Updated Successfully";
+                TempData["NotificationType"] = "Success";
+                return RedirectToAction("Index");
+            }
+            return View(studen);
+        }
+
+        // DELETE
+        [HttpGet]
+        public IActionResult Delete(int ID)
+        {
+            var student = _context.Students.Find(ID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            else 
+            {
+                return View(student);
+            }
+        }
+
+        public IActionResult DeleteConfirmed(int ID)
+        {
+            var student = _context.Students.Find(ID);
+            if (student != null)
+            {
+                _context.Students.Remove(student);
+                _context.SaveChanges();
+                TempData["Notification"] = "Student Deleted Successfully";
+                TempData["NotificationType"] = "Success";
+            }
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

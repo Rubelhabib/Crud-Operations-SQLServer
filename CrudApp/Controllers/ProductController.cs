@@ -79,9 +79,9 @@ namespace CrudApp.Controllers
                 return View(product);
             }
         }
-        public IActionResult DeleteConfirm(int id)
+        public IActionResult DeleteConfirm(int ID)
         {
-            var product = _context.Products.Find(id);
+            var product = _context.Products.Find(ID);
             if (product != null)
             {
                 _context.Products.Remove(product);
