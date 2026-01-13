@@ -5,7 +5,7 @@ namespace CrudApp.Models
     public class Student
     {
         [Key]
-        public int ID { get; set; }
+        public int id { get; set; }
         [Required]
         [StringLength(1000)]
         public string Name { get; set; }

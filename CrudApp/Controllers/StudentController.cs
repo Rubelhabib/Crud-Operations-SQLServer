@@ -33,7 +33,7 @@ namespace CrudApp.Controllers
             {
                 _context.Students.Add(model);
                 _context.SaveChanges();
-                TempData["Notification"] = "Product Created Successfully";
+                TempData["Notification"] = "Student Created Successfully";
                 TempData["NotificationType"] = "Success";
                 return RedirectToAction("Index");
             }
@@ -57,24 +57,24 @@ namespace CrudApp.Controllers
 
         // EDIT
         [HttpPost]
-        public IActionResult Edit([Bind("Id, Name, Roll, Class, Email")] Student studen)
+        public IActionResult Edit([Bind("Id, Name, Roll, Class, Email")] Student student)
         {
             if (ModelState.IsValid)
             {
-                _context.Students.Update(studen);
+                _context.Students.Update(student);
                 _context.SaveChanges();
                 TempData["Notification"] = "Student Updated Successfully";
                 TempData["NotificationType"] = "Success";
                 return RedirectToAction("Index");
             }
-            return View(studen);
+            return View(student);
         }
 
         // DELETE
         [HttpGet]
-        public IActionResult Delete(int ID)
+        public IActionResult Delete(int id)
         {
-            var student = _context.Students.Find(ID);
+            var student = _context.Students.Find(id);
             if (student == null)
             {
                 return NotFound();
@@ -85,9 +85,10 @@ namespace CrudApp.Controllers
             }
         }
 
-        public IActionResult DeleteConfirmed(int ID)
+        [HttpPost]
+        public IActionResult DeleteConfirm(int id)
         {
-            var student = _context.Students.Find(ID);
+            var student = _context.Students.Find(id);
             if (student != null)
             {
                 _context.Students.Remove(student);
