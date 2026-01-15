@@ -12,11 +12,11 @@ namespace CrudApp.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            IEnumerable<Student> students = _context.Students.ToList();
-            return View(students);
-        }
+        //public IActionResult Index()
+        //{
+        //    IEnumerable<Student> students = _context.Students.ToList();
+        //    return View(students);
+        //}
 
         // CREATE
         [HttpGet]
@@ -99,6 +99,24 @@ namespace CrudApp.Controllers
             return RedirectToAction("Index");
 
         }
+
+        public IActionResult Index(string searchString)
+        {
+            var students = _context.Students.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                students = students.Where(s =>
+                    s.Name.Contains(searchString) ||
+                    s.Email.Contains(searchString) ||
+                    s.Roll.ToString().Contains(searchString)
+                );
+            }
+
+            return View(students.ToList());
+        }
+
+
 
     }
 }

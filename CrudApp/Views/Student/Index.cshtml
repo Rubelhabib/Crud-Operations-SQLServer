@@ -6,6 +6,25 @@
     <a class="btn btn-success" asp-controller="Student" asp-action="Create">Create New Student</a>
 </p>
 
+<!--Search option-->
+<form asp-action="Index" method="get" class="mb-3">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text"
+                   name="searchString"
+                   value="@Context.Request.Query["searchString"]"
+                   class="form-control"
+                   placeholder="Search by Name / Roll / Email" />
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">Clear</a>
+        </div>
+    </div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
